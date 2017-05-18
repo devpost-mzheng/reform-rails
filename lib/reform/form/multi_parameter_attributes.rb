@@ -6,7 +6,7 @@ module Reform::Form::MultiParameterAttributes
       date_attributes = {}
 
       params.each do |attribute, value|
-        if value.is_a?(Hash)
+        if value.respond_to?(:to_hash)
           params[attribute] = call(value) # TODO: #validate should only handle local form params.
         elsif matches = attribute.match(/^(\w+)\(.i\)$/)
           date_attribute = matches[1]
